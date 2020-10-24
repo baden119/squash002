@@ -4,28 +4,37 @@ import axios from 'axios';
 class QueryApi extends Component {
 
   state = {
-    subreddit: "",
-    count: ""
+    api_data : []
   }
 
-  clickClack = () => {
-      axios.get('https://api.pushshift.io/reddit/submission/search/?subreddit=technology&aggs=subreddit&q=phone&size=0&after=2018-09-01&before=2018-10-01')
+  queryApi = () => {
+      const url = 'https://api.pushshift.io/reddit/search/submission';
+      const params = {
+        "subreddit": this.props.subreddit,
+        "after": this.props.after_date,
+        "before": this.props.before_date,
+        "frequency": "month",
+        "aggs" : "subreddit,created_utc",
+        "size": 0
+      }
+
+      axios.get(url, { params: params })
         .then(res => {
           this.setState(state => ({
-            subreddit: res.data.aggs.subreddit[0].key,
-            count: res.data.aggs.subreddit[0].doc_count
-          }));
-
-          // console.log(res.data.aggs.subreddit[0])
-      })
+            api_data : res.data.aggs.created_utc
+          }))
+          this.apiDataFunction()
+      ;})
   }
 
+  apiDataFunction = () =>{
+    this.props.apiData(this.state.api_data)
+  }
 
   render() {
     return (
       <div>
-        <button onClick={ () => this.clickClack()} > Query API </button>
-        <h3> {this.state.subreddit} | {this.state.count} </h3>
+        <button onClick={ () => this.queryApi()} > Query API </button>
       </div>
     );
   }

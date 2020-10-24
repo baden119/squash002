@@ -1,19 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-// import axios from 'axios';
 import QueryApi from './components/QueryApi';
-import Hello from './components/Hello';
-import Count from './components/Count'
+import QueryInputs from './components/QueryInputs'
+import CreateGraph from './components/CreateGraph'
 
 
-function App() {
-  return (
-    <div className="App">
-      <h1> Lets get a loading animation going! </h1>
-      <QueryApi />
-      <Count />
-    </div>
-  );
+class App extends Component {
+
+  state = {
+      subreddit: '',
+      after_date: '',
+      before_date: '',
+      api_data: []
+  }
+
+  inputData = (input_data) => {
+     this.setState({[input_data.name]: input_data.value});
+   }
+
+  apiData = (api_data) => {
+    this.setState({
+      api_data : api_data
+    });
+  }
+
+
+    render() {
+      return (
+        <div className="App">
+          <QueryInputs subData={this.inputData} />
+          <QueryApi subreddit={this.state.subreddit}
+                    after_date={this.state.after_date}
+                    before_date={this.state.before_date}
+                    apiData={this.apiData}/>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          <CreateGraph apiData={this.state.api_data} />
+        </div>
+      );
+  }
 }
+
 
 export default App;
