@@ -24,7 +24,6 @@ class QueryInputs extends Component {
   render() {
     return (
       <div>
-        <h3> QueryInputs </h3>
         <form onSubmit={this.onSubmit}>
           /r/<input
             type="text"

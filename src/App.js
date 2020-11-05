@@ -26,12 +26,16 @@ class App extends Component {
     render() {
       return (
         <div className="App">
-          <QueryInputs subData={this.inputData} />
-          <QueryApi apiData={this.apiData}
-                    subreddit={this.state.subreddit}
-                    after_date={this.state.after_date}
-                    before_date={this.state.before_date}/>
-          <CreateGraph apiData={this.state.api_data} />
+          <h2>SQuASH v2.0</h2>
+          <div className="input_components">
+            <QueryInputs subData={this.inputData} />
+            <div className="DDB">DDB</div>
+          </div>
+            <QueryApi apiData={this.apiData}
+                      subreddit={this.state.subreddit}
+                      after_date={this.state.after_date}
+                      before_date={this.state.before_date}/>
+            <CreateGraph apiData={this.state.api_data} />
         </div>
       );
   }
