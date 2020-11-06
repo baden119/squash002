@@ -26,5 +26,9 @@ body {
   align-items: center;
   font-size: 2em;
   color: grey;
+  /* background-color: lightgreen; */
+}
+
+.user_inputs{
   background-color: lightgreen;
 }

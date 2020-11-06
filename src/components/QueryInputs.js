@@ -23,7 +23,7 @@ class QueryInputs extends Component {
 
   render() {
     return (
-      <div>
+      <div className="user_inputs">
         <form onSubmit={this.onSubmit}>
           /r/<input
             type="text"
