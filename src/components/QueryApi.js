@@ -69,15 +69,13 @@ class QueryApi extends Component {
                     }
                   ];
 
-      this.props.durationData(true);
-      console.log("B4 timeout function");
+      this.props.durationData('processing');
       setTimeout(() => {  this.apiDataFunction(data); }, 3000);
 
   }
 
   apiDataFunction = (data) =>{
-    this.props.durationData(false);
-    console.log("after timeout function");
+    this.props.durationData('completed');
 
     // empty array for map data
     let map_data = []

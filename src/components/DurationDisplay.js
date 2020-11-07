@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 
 class DurationDisplay extends Component {
-  getStyle = () =>{
-    if (this.props.duration){
-      return{
-        backgroundColor: 'chartreuse',
-      }
-    } else {
-      return{
-        backgroundColor: 'lightpink'
-      }
-    }
-}
 
   render() {
-    if (this.props.duration){
+    if (this.props.duration === 'not ready'){
       return (
-        <div className="duration_display">
-          Duration Display Box
-          Status FALSE
+        <div className="not_ready">
+          Status NOT READY
         </div>
       );
-    } else{
+    } else if (this.props.duration === 'ready'){
       return (
-        <div className="duration_display">
-          Duration Display Box
-          Status TRUE
+        <div className="ready">
+          Status READY
+        </div>
+      );
+    } else if(this.props.duration === 'processing'){
+      return (
+        <div className="processing">
+          Status PROCESSING
+        </div>
+      );
+    } else if(this.props.duration === 'completed'){
+    return (
+        <div className="completed">
+          Status COMPLETED
         </div>
       );
     }
+
   }
 }
 

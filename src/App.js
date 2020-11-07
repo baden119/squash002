@@ -12,7 +12,7 @@ class App extends Component {
       after_date: '',
       before_date: '',
       api_data: [],
-      duration: false
+      duration: 'not ready'
   }
 
   inputData = (input_data) => {
@@ -34,7 +34,10 @@ class App extends Component {
         <div className="App">
           <h2>SQuASH v2.0</h2>
           <div className="input_components">
-            <QueryInputs subData={this.inputData} />
+            <QueryInputs subData={this.inputData}
+              durationData={this.durationData}
+              subreddit={this.state.subreddit}
+             />
             <DurationDisplay duration ={this.state.duration} />
           </div>
             <QueryApi apiData={this.apiData}

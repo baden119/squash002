@@ -2,31 +2,32 @@ import React, { Component } from 'react';
 
 class QueryInputs extends Component {
 
-
-  // // It dosen't matter what you call this method, we're just going with onChange
-  // onChange = (e) => this.setState({
-  //   [e.target.name]: e.target.value
-  // });
-  //
-  //
   onSubmit = (e) =>{
     e.preventDefault();
-    // this.props.addTodo(this.state.title);
-    // this.setState({title: '' });
   }
 
   inputDataFunction = (e) =>{
     this.props.subData(e.target)
-    // this.props.subData(e.target.value)
   }
 
+  clearInputs = () => {
+    // document.getElementById("subreddit_input").value = ''
+    // console.log(document.getElementById("subreddit_input").value)
+    // document.getElementById("inputs").reset();
+    this.props.durationData('not ready');
+  }
+
+  makeReady = () => {
+    this.props.durationData('ready');
+  }
 
   render() {
     return (
-      <div className="user_inputs">
-        <form onSubmit={this.onSubmit}>
+      <div style={{ flexDirection: "column" }} className="user_inputs">
+        <form id="inputs" onSubmit={this.onSubmit}>
           /r/<input
             type="text"
+            id="subreddit_input"
             name="subreddit"
             placeholder="Subreddit"
             onChange={this.inputDataFunction}
@@ -44,6 +45,10 @@ class QueryInputs extends Component {
             onChange={this.inputDataFunction}
           />
         </form>
+        <div>
+          <button onClick={ () => this.clearInputs()}>clear inputs</button>
+          <button onClick={ () => this.makeReady()}>ready</button>
+        </div>
       </div>
     );
   }
